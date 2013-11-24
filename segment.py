@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from abc import ABCMeta
-from itertools import imap
+from itertools import imap, ifilter
 from re import compile
 
 __all__ = ('Segmenter',)
@@ -22,7 +22,12 @@ def _chunk_var_len(chunk):
 
 
 def _chunk_tf_sum(lex):
-    return lambda c: sum(imap(lex.term_frequence, c))
+    def calculate_sum(chunk):
+        chunk = ifilter(lambda w: len(w) == 1, chunk)
+        tf_list = imap(lex.term_frequence, chunk)
+        return sum(tf_list)
+
+    return calculate_sum
 
 
 def _create_rule(func, get_max=True):
