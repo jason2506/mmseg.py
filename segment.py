@@ -24,7 +24,7 @@ def _chunk_var_len(chunk):
 def _chunk_tf_sum(lex):
     def calculate_sum(chunk):
         chunk = ifilter(lambda w: len(w) == 1, chunk)
-        tf_list = imap(lex.term_frequence, chunk)
+        tf_list = imap(lex.term_frequency, chunk)
         return sum(tf_list)
 
     return calculate_sum

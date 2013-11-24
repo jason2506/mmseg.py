@@ -21,7 +21,7 @@ class Lexicon(object):
         self._trie = _create_trie(tf.iterkeys())
         self._tf = tf
 
-    def term_frequence(self, term):
+    def term_frequency(self, term):
         return self._tf.get(term, 0)
 
     def get_chunks(self, string, start=0, max_len=3):
